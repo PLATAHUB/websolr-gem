@@ -14,7 +14,7 @@ module Websolr
       require 'rsolr'
       headers = {}
       if ENV['WEBSOLR_LB'].present? && ENV['WEBSOLR_LB'] == 'true'
-        headers.merge!({'X-Websolr-Routing': 'prefer-replica'})
+        headers.merge!({'X-Websolr-Routing' => 'prefer-replica'})
       end
       Sunspot::Session.connection_class = Websolr::Connection.new(headers)
     end

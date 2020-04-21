@@ -30,7 +30,7 @@ module Websolr
       time  = Time.now.to_i.to_s
       nonce = time.split(//).sort_by{rand}.join
       auth  = OpenSSL::HMAC.hexdigest('sha1', auth_token, "#{time}#{nonce}")
-      { 'X-Websolr-Time': time, 'X-Websolr-Nonce': nonce, 'X-Websolr-Auth': auth }
+      { 'X-Websolr-Time' => time, 'X-Websolr-Nonce' => nonce, 'X-Websolr-Auth' => auth }
     end
 
     # Create a new RSolr Client that is optimally configured for Websolr.
@@ -50,9 +50,9 @@ module Websolr
         conn.response :raise_error
         conn.headers = {
           user_agent: 'Websolr Client (Faraday with Typhoeus)',
-          'Keep-Alive': 'timeout=10, max=1000'
+          'Keep-Alive' => 'timeout=10, max=1000'
         }.merge(conn_opts[:headers])
-        conn.adapter  :typhoeus
+        conn.adapter :typhoeus
       end
     end
 
